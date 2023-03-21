@@ -17,6 +17,8 @@ spec:
       containers:
       - name: nodejs-container
         image: qa-docker-nexus.mtnsat.io/dockerrepo/nodejs-app:1
+      imagePullSecrets:
+      - name: myregistrykey        
         ports:
         - containerPort: 80
 ---
