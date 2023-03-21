@@ -36,7 +36,6 @@ node(POD_LABEL) {
     def app
 
     stage('Clone repository') {
-        sh 'git ls-remote -h git@github.com:faisalbasha19/argocd-nodejs.git HEAD'
         git branch: 'main', credentialsId: 'gitssh-1', url: 'git@github.com:faisalbasha19/argocd-nodejs.git'
     }
 
@@ -57,8 +56,8 @@ node(POD_LABEL) {
                         sh "git commit -m 'Done by Jenkins Job update manifest: ${env.BUILD_ID}'"
                         sh "git branch -M main"
                         //sh "git ls-remote -h git@github.com:faisalbasha19/argocd-nodejs.git HEAD -y"                      
-                        //sh "git push origin main"
-                        sh "git push -f --no-verify https://${GIT_USERNAME}:${GIT_PASSWORD}@github.com/${GIT_USERNAME}/argocd-nodejs.git HEAD:main"
+                        sh "git push origin main"
+                        //sh "git push -f --no-verify https://${GIT_USERNAME}:${GIT_PASSWORD}@github.com/${GIT_USERNAME}/argocd-nodejs.git HEAD:main"
       }
     }
   }
