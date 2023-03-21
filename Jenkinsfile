@@ -36,7 +36,7 @@ node(POD_LABEL) {
     def app
 
     stage('Clone repository') {      
-        checkout scm
+        git branch: 'main', credentialsId: 'gitssh', url: 'git@github.com:faisalbasha19/argocd-nodejs.git'      
     }
 
     stage('Update GITHUB') {
@@ -44,7 +44,6 @@ node(POD_LABEL) {
                 catchError(buildResult: 'SUCCESS', stageResult: 'FAILURE') {   
                     sshagent (credentials: ['gitssh-1']) {                  
                     //withCredentials([usernamePassword(credentialsId: 'gitssh-1', passwordVariable: 'GIT_PASSWORD', usernameVariable: 'GIT_USERNAME')]) {
-                        sh 'git init'
                         sh "cat deployment.yml"
                         sh "sed -i 's+qa-docker-nexus.mtnsat.io/dockerrepo/nodejs-app:[[:digit:]]+qa-docker-nexus.mtnsat.io/dockerrepo/nodejs-app:${DOCKERTAG}+g' deployment.yml"
                         sh "cat deployment.yml"
