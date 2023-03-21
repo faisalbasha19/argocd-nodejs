@@ -43,8 +43,8 @@ node(POD_LABEL) {
     stage('Update GITHUB') {
             script {
                 catchError(buildResult: 'SUCCESS', stageResult: 'FAILURE') {   
-                    sshagent (credentials: ['gitssh-1']) {                  
-                    //withCredentials([usernamePassword(credentialsId: 'gitssh-1', passwordVariable: 'GIT_PASSWORD', usernameVariable: 'GIT_USERNAME')]) {
+                    //sshagent (credentials: ['gitssh-1']) {                  
+                    withCredentials([usernamePassword(credentialsId: 'github', passwordVariable: 'GIT_PASSWORD', usernameVariable: 'GIT_USERNAME')]) {
                         sh "curl -O https://gist.githubusercontent.com/m14t/3056747/raw/2e0d5df6d141400640c8f768e5c3603533812cf6/fix_github_https_repo.sh"
                         sh "chmod +x fix_github_https_repo.sh"
                         sh "./fix_github_https_repo.sh"                      
@@ -56,9 +56,9 @@ node(POD_LABEL) {
                         sh "git add ."
                         sh "git commit -m 'Done by Jenkins Job update manifest: ${env.BUILD_ID}'"
                         sh "git branch -M main"
-                        sh "git ls-remote -h git@github.com:faisalbasha19/argocd-nodejs.git HEAD -y"                      
-                        sh "git push origin main"
-                        //sh "git push --force https://${env.GIT_USERNAME}:${GIT_PASS}@github.com/faisalbasha19/argocd-nodejs.git HEAD:main"
+                        //sh "git ls-remote -h git@github.com:faisalbasha19/argocd-nodejs.git HEAD -y"                      
+                        //sh "git push origin main"
+                        sh "git push https://${GIT_USERNAME}:${GIT_PASSWORD}@github.com/${GIT_USERNAME}/argocd-nodejs.git HEAD:main"
       }
     }
   }
