@@ -35,8 +35,8 @@ podTemplate(yaml: '''
 node(POD_LABEL) {
     def app
 
-    stage('Clone repository') {      
-        git branch: 'main', credentialsId: 'gitssh', url: 'https://github.com/faisalbasha19/argocd-nodejs.git'      
+    stage('Clone repository') {
+        git branch: 'main', credentialsId: 'gitssh-1', url: 'git@github.com:faisalbasha19/argocd-nodejs.git'
     }
 
     stage('Update GITHUB') {
