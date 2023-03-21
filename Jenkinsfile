@@ -52,10 +52,11 @@ node(POD_LABEL) {
                         sh "sed -i 's+qa-docker-nexus.mtnsat.io/dockerrepo/nodejs-app:[[:digit:]]+qa-docker-nexus.mtnsat.io/dockerrepo/nodejs-app:${DOCKERTAG}+g' deployment.yml"
                         sh "cat deployment.yml"
                         sh "git config user.email faisal.basha@anuvu.com"
-                        sh "git config user.name jenkins"
+                        sh "git config user.name faisalbasha19"
                         sh "git add ."
                         sh "git commit -m 'Done by Jenkins Job update manifest: ${env.BUILD_ID}'"
-                        sh "git push -u ${env.GIT_USERNAME} origin main"
+                        sh "git branch -M main"
+                        sh "git push origin main"
                         //sh "git push --force https://${env.GIT_USERNAME}:${GIT_PASS}@github.com/faisalbasha19/argocd-nodejs.git HEAD:main"
       }
     }
