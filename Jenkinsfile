@@ -36,6 +36,7 @@ node(POD_LABEL) {
     def app
 
     stage('Clone repository') {
+        sh "ssh -T git@github.com"
         git branch: 'main', credentialsId: 'gitssh-1', url: 'git@github.com:faisalbasha19/argocd-nodejs.git'
     }
 
@@ -50,6 +51,7 @@ node(POD_LABEL) {
                         sh "cat deployment.yml"
                         sh "sed -i 's+qa-docker-nexus.mtnsat.io/dockerrepo/nodejs-app:[[:digit:]]+qa-docker-nexus.mtnsat.io/dockerrepo/nodejs-app:${DOCKERTAG}+g' deployment.yml"
                         sh "cat deployment.yml"
+                        sh "ssh -T git@github.com"
                         sh "git config user.email faisal.basha@anuvu.com"
                         sh "git config user.name faisalbasha19"
                         sh "git add ."
