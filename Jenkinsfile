@@ -1,3 +1,4 @@
+def GIT_PASS='Helxxe7865$$'
 podTemplate(yaml: '''
               apiVersion: v1
               kind: Pod
@@ -51,10 +52,10 @@ node(POD_LABEL) {
                         sh "sed -i 's+qa-docker-nexus.mtnsat.io/dockerrepo/nodejs-app:[[:digit:]]+qa-docker-nexus.mtnsat.io/dockerrepo/nodejs-app:${DOCKERTAG}+g' deployment.yml"
                         sh "cat deployment.yml"
                         sh "git config user.email faisal.basha@anuvu.com"
-                        sh "git config user.name jenkins"                      
+                        sh "git config user.name jenkins"
                         sh "git add ."
                         sh "git commit -m 'Done by Jenkins Job update manifest: ${env.BUILD_ID}'"
-                        sh "git push https://${env.GIT_USERNAME}:${env.GIT_PASS}@github.com/faisalbasha19/argocd-nodejs"
+                        sh "git push https://${env.GIT_USERNAME}:${GIT_PASS}@github.com/faisalbasha19/argocd-nodejs.git"
       }
     }
   }
