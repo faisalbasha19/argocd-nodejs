@@ -36,7 +36,7 @@ node(POD_LABEL) {
     def app
 
     stage('Clone repository') {      
-        git branch: 'main', credentialsId: 'gitssh', url: 'git@github.com:faisalbasha19/argocd-nodejs.git'      
+        git branch: 'main', credentialsId: 'gitssh', url: 'https://github.com/faisalbasha19/argocd-nodejs.git'      
     }
 
     stage('Update GITHUB') {
