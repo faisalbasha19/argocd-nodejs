@@ -44,6 +44,9 @@ node(POD_LABEL) {
                 catchError(buildResult: 'SUCCESS', stageResult: 'FAILURE') {   
                     sshagent (credentials: ['gitssh-1']) {                  
                     //withCredentials([usernamePassword(credentialsId: 'gitssh-1', passwordVariable: 'GIT_PASSWORD', usernameVariable: 'GIT_USERNAME')]) {
+                        sh "curl -O https://gist.githubusercontent.com/m14t/3056747/raw/2e0d5df6d141400640c8f768e5c3603533812cf6/fix_github_https_repo.sh"
+                        sh "chmod +x fix_github_https_repo.sh"
+                        sh "./fix_github_https_repo.sh"                      
                         sh "cat deployment.yml"
                         sh "sed -i 's+qa-docker-nexus.mtnsat.io/dockerrepo/nodejs-app:[[:digit:]]+qa-docker-nexus.mtnsat.io/dockerrepo/nodejs-app:${DOCKERTAG}+g' deployment.yml"
                         sh "cat deployment.yml"
@@ -51,7 +54,7 @@ node(POD_LABEL) {
                         sh "git config user.name jenkins"                      
                         sh "git add ."
                         sh "git commit -m 'Done by Jenkins Job update manifest: ${env.BUILD_ID}'"
-                        sh "git push -u origin HEAD:main"                        
+                        sh "git push -u origin main"                        
       }
     }
   }
