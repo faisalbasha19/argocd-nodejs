@@ -57,7 +57,7 @@ node(POD_LABEL) {
                         sh "git branch -M main"
                         //sh "git ls-remote -h git@github.com:faisalbasha19/argocd-nodejs.git HEAD -y"                      
                         //sh "git push origin main"
-                      sh "git push --force https://${github-new-pat}@github.com/${GIT_USERNAME}/argocd-nodejs.git HEAD:main"
+                        sh "git push --force https://${GIT_USERNAME}:${GIT_PASSWORD}@github.com/${GIT_USERNAME}/argocd-nodejs.git HEAD:main"
       }
     }
   }
