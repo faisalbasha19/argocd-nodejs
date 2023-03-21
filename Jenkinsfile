@@ -1,4 +1,3 @@
-def GIT_PASS='Helxxe7865$$'
 podTemplate(yaml: '''
               apiVersion: v1
               kind: Pod
@@ -47,7 +46,7 @@ node(POD_LABEL) {
                     withCredentials([usernamePassword(credentialsId: 'github', passwordVariable: 'GIT_PASSWORD', usernameVariable: 'GIT_USERNAME')]) {
                         sh "curl -O https://gist.githubusercontent.com/m14t/3056747/raw/2e0d5df6d141400640c8f768e5c3603533812cf6/fix_github_https_repo.sh"
                         sh "chmod +x fix_github_https_repo.sh"
-                        sh "./fix_github_https_repo.sh"                      
+                        sh "./fix_github_https_repo.sh" 
                         sh "cat deployment.yml"
                         sh "sed -i 's+qa-docker-nexus.mtnsat.io/dockerrepo/nodejs-app:[[:digit:]]+qa-docker-nexus.mtnsat.io/dockerrepo/nodejs-app:${DOCKERTAG}+g' deployment.yml"
                         sh "cat deployment.yml"
@@ -58,7 +57,7 @@ node(POD_LABEL) {
                         sh "git branch -M main"
                         //sh "git ls-remote -h git@github.com:faisalbasha19/argocd-nodejs.git HEAD -y"                      
                         //sh "git push origin main"
-                        sh "git push https://github.com/${GIT_USERNAME}/argocd-nodejs.git HEAD:main"
+                      sh "git push --force https://${github-new-pat}@github.com/${GIT_USERNAME}/argocd-nodejs.git HEAD:main"
       }
     }
   }
