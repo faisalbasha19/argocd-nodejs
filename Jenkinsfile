@@ -45,11 +45,11 @@ node(POD_LABEL) {
                     sshagent (credentials: ['gitssh-1']) {                  
                     //withCredentials([usernamePassword(credentialsId: 'gitssh-1', passwordVariable: 'GIT_PASSWORD', usernameVariable: 'GIT_USERNAME')]) {
                         sh 'git init'
-                        sh "git config user.email faisal.basha@anuvu.com"
-                        sh "git config user.name jenkins"
                         sh "cat deployment.yml"
                         sh "sed -i 's+qa-docker-nexus.mtnsat.io/dockerrepo/nodejs-app:[[:digit:]]+qa-docker-nexus.mtnsat.io/dockerrepo/nodejs-app:${DOCKERTAG}+g' deployment.yml"
                         sh "cat deployment.yml"
+                        sh "git config user.email faisal.basha@anuvu.com"
+                        sh "git config user.name jenkins"                      
                         sh "git add ."
                         sh "git commit -m 'Done by Jenkins Job update manifest: ${env.BUILD_ID}'"
                         sh "git push -u origin HEAD:main"                        
