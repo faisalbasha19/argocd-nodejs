@@ -36,7 +36,11 @@ node(POD_LABEL) {
     def app
 
     stage('Clone repository') {
-        sh "ssh -T git@github.com"
+        sh "mkdir .ssh"
+        sh "chmod 700 .ssh"
+        sh "ssh-keygen -t rsa"
+        sh "cp .ssh/id_rsa.pub >> /var/jenkins_home/.ssh/known_hosts"
+        sh 'export GIT_SSH_COMMAND=ssh -o UserKnownHostsFile=/dev/null -o StrictHostKeyChecking=no'    
         git branch: 'main', credentialsId: 'gitssh-1', url: 'git@github.com:faisalbasha19/argocd-nodejs.git'
     }
 
