@@ -55,7 +55,8 @@ node(POD_LABEL) {
                         sh "git config user.name jenkins"
                         sh "git add ."
                         sh "git commit -m 'Done by Jenkins Job update manifest: ${env.BUILD_ID}'"
-                        sh "git push --force https://${env.GIT_USERNAME}:${GIT_PASS}@github.com/faisalbasha19/argocd-nodejs.git HEAD:main"
+                        sh "git push -u ${env.GIT_USERNAME} origin main"
+                        //sh "git push --force https://${env.GIT_USERNAME}:${GIT_PASS}@github.com/faisalbasha19/argocd-nodejs.git HEAD:main"
       }
     }
   }
