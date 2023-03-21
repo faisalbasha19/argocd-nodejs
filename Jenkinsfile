@@ -54,7 +54,7 @@ node(POD_LABEL) {
                         sh "git config user.name jenkins"                      
                         sh "git add ."
                         sh "git commit -m 'Done by Jenkins Job update manifest: ${env.BUILD_ID}'"
-                      sh "git push https://${env.GIT_USERNAME}:${env.GIT_PASS}@github.com/faisalbasha19/argocd-nodejs"
+                        sh "git push https://${env.GIT_USERNAME}:${env.GIT_PASS}@github.com/faisalbasha19/argocd-nodejs"
       }
     }
   }
