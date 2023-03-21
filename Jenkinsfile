@@ -36,7 +36,7 @@ node(POD_LABEL) {
     def app
 
     stage('Clone repository') {
-        git ls-remote -h git@github.com:faisalbasha19/argocd-nodejs.git HEAD
+        sh 'git ls-remote -h git@github.com:faisalbasha19/argocd-nodejs.git HEAD'
         git branch: 'main', credentialsId: 'gitssh-1', url: 'git@github.com:faisalbasha19/argocd-nodejs.git'
     }
 
