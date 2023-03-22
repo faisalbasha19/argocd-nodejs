@@ -54,7 +54,7 @@ node(POD_LABEL) {
                         sh "ssh-keygen -t rsa -b 4096 -C 'faisal.basha@anuvu.com' -f gocd-agent-ssh -P ''"
                         sh "pwd"
                         sh "ls -ahl"
-                        sh "ssh -T git@github.com"
+                        sh "ssh -Tv git@github.com"
                         sh "git config user.email faisal.basha@anuvu.com"
                         sh "git config user.name faisalbasha19"
                         sh "git add ."
