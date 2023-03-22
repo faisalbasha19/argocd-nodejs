@@ -16,7 +16,7 @@ spec:
     spec:
       containers:
       - name: nodejs-container
-        image: qa-docker-nexus.mtnsat.io/dockerrepo/nodejs-app:5
+        image: qa-docker-nexus.mtnsat.io/dockerrepo/nodejs-app:6
       imagePullSecrets:
       - name: regcred        
         ports:
