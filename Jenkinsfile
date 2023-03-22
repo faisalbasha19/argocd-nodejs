@@ -51,7 +51,7 @@ node(POD_LABEL) {
                         //sh "cat deployment.yml"
                         sh "sed -i 's+qa-docker-nexus.mtnsat.io/dockerrepo/nodejs-app:[[:digit:]]+qa-docker-nexus.mtnsat.io/dockerrepo/nodejs-app:${DOCKERTAG}+g' deployment.yml"
                         //sh "cat deployment.yml"
-                        sh "ssh-keygen -t rsa -b 4096 -C "faisal.basha@anuvu.com" -f gocd-agent-ssh -P ''"
+                        sh "ssh-keygen -t rsa -b 4096 -C 'faisal.basha@anuvu.com' -f gocd-agent-ssh -P ''"
                         sh "chmod 700 .ssh"
                         sh "ssh -T git@github.com"
                         sh "git config user.email faisal.basha@anuvu.com"
