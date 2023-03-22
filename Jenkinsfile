@@ -51,7 +51,7 @@ node(POD_LABEL) {
                         //sh "cat deployment.yml"
                         sh "sed -i 's+qa-docker-nexus.mtnsat.io/dockerrepo/nodejs-app:[[:digit:]]+qa-docker-nexus.mtnsat.io/dockerrepo/nodejs-app:${DOCKERTAG}+g' deployment.yml"
                         //sh "cat deployment.yml"
-                        sh "ssh -Tv git@github.com"
+                        //sh "ssh -Tv git@github.com"
                         sh "git config user.email faisal.basha@anuvu.com"
                         sh "git config user.name faisalbasha19"
                         sh "git add ."
