@@ -43,19 +43,14 @@ node(POD_LABEL) {
     stage('Update GITHUB') {
             script {
                 catchError(buildResult: 'SUCCESS', stageResult: 'FAILURE') {   
-                    //sshagent (credentials: ['gitssh-1']) {                  
-                    withCredentials([usernamePassword(credentialsId: 'github', passwordVariable: 'GIT_PASSWORD', usernameVariable: 'GIT_USERNAME')]) {
+                    sshagent (credentials: ['agent-pod-skey']) {                  
+                    //withCredentials([usernamePassword(credentialsId: 'github', passwordVariable: 'GIT_PASSWORD', usernameVariable: 'GIT_USERNAME')]) {
                         //sh "curl -O https://gist.githubusercontent.com/m14t/3056747/raw/2e0d5df6d141400640c8f768e5c3603533812cf6/fix_github_https_repo.sh"
                         //sh "chmod +x fix_github_https_repo.sh"
                         //sh "./fix_github_https_repo.sh" 
                         //sh "cat deployment.yml"
                         sh "sed -i 's+qa-docker-nexus.mtnsat.io/dockerrepo/nodejs-app:[[:digit:]]+qa-docker-nexus.mtnsat.io/dockerrepo/nodejs-app:${DOCKERTAG}+g' deployment.yml"
                         //sh "cat deployment.yml"
-                        sh "ssh-keygen -t rsa -b 4096 -C 'faisal.basha@anuvu.com' -f gocd-agent-ssh -P ''"
-                        sh "pwd"
-                        sh "ls -ahl"
-                        sh "cat gocd-agent-ssh.pub"
-                        sh "cat gocd-agent-ssh"
                         sh "ssh -Tv git@github.com"
                         sh "git config user.email faisal.basha@anuvu.com"
                         sh "git config user.name faisalbasha19"
