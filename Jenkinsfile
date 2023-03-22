@@ -52,7 +52,7 @@ node(POD_LABEL) {
                         sh "sed -i 's+qa-docker-nexus.mtnsat.io/dockerrepo/nodejs-app:[[:digit:]]+qa-docker-nexus.mtnsat.io/dockerrepo/nodejs-app:${DOCKERTAG}+g' deployment.yml"
                         sh "cat deployment.yml"
                         sh "pwd"
-                        sh "cat /var/jenkins_home/.ssh/id_rsa.pub"                      
+                        sh "cat /$(pwd)/.ssh/id_rsa.pub"                      
                         sh "ssh -T git@github.com"
                         sh "git config user.email faisal.basha@anuvu.com"
                         sh "git config user.name faisalbasha19"
