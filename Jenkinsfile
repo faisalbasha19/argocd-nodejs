@@ -36,7 +36,7 @@ node(POD_LABEL) {
     def app
 
     stage('Clone repository') {
-        sh 'export GIT_SSH_COMMAND=ssh -o UserKnownHostsFile=/dev/null -o StrictHostKeyChecking=no'    
+        sh 'export GIT_SSH_COMMAND="ssh -o UserKnownHostsFile=/dev/null -o StrictHostKeyChecking=no"'    
         git branch: 'main', credentialsId: 'gitssh-1', url: 'git@github.com:faisalbasha19/argocd-nodejs.git'
     }
 
