@@ -16,7 +16,7 @@ spec:
     spec:
       containers:
       - name: nodejs-container
-        image: qa-docker-nexus.mtnsat.io/dockerrepo/nodejs-app:8
+        image: qa-docker-nexus.mtnsat.io/dockerrepo/nodejs-app:11
         ports:
         - containerPort: 8087        
       imagePullSecrets:
